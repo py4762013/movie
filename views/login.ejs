@@ -3,8 +3,8 @@
     <form class="form-horizontal" method="post">
         <fieldset>
             <legend>用户登陆</legend>
-            <% if(msg){ %>
-                <p class="bg-danger input-lg"><%= msg %></p>
+            <% if(error){ %>
+                <p class="bg-danger input-lg"><%= error %></p>
             <% } %>
             <div class="form-group">
                 <label class="control-label col-sm-2 ">用户名</label>

@@ -4,8 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var settings = require('./settings');
 var session = require('express-session');
 var flash = require('connect-flash');
+var MongoStore = require('connect-mongo')(session);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -26,9 +28,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // sesssion
 app.use(session({
-    secret: 'kyoye',
-    resave: false,
-    saveUninitialized: true
+    secret: settings.cookieSecret,
+    key: settings.db,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 *30 },
+    store: new MongoStore({
+        db: settings.db,
+        host: settings.host,
+        port: settings.port
+    })
 }));
 
 // flash
