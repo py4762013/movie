@@ -7,7 +7,10 @@ router.get('/', function(req, res) {
 });
 
 router.get('/login', function(req, res){
-    res.render('login', { title: "用户登陆" });
+    res.render('login', { 
+        title: "用户登陆", 
+        msg: req.flash('msg').toString()
+    });
 });
 
 router.post('/login', function(req, res){
@@ -17,13 +20,16 @@ router.post('/login', function(req, res){
     }
 
     if(req.body.username === user.username && req.body.password === user.password){
+        req.session.user = user
         res.redirect('/home');
+    }else{
+        req.flash('msg', '用户名或密码不正确');
+        res.redirect('/login');
     }
-
-    res.redirect('/login');
 });
 
 router.get('/logout', function(req, res){
+    req.session.user = null;
     res.redirect('/');
 });
 
