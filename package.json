@@ -15,6 +15,7 @@
     "ejs": "~0.8.5",
     "express-session": "*",
     "connect-flash": "*",
-    "connect-mongo": "*"
+    "connect-mongo": "*",
+    "mongoose": "*"
   }
 }

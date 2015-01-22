@@ -1,0 +1,15 @@
+<% include header %>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-8">
+            <form>
+                <fieldset>
+                    <legend><%= label %></legend>
+                    <textarea id="c_eidtor" name="c_editor" class="col-sm-12" rows="10">test</textarea>
+                    <button id="c_save" type="button" class="btn btn-primary">保存</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<% include footer %>
