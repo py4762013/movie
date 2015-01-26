@@ -5,7 +5,7 @@ var MovieSchema = new Schema({
     alias: [String],
     publish: Date,
     create_date: { type: Date, default: Date.now },
-    image: {
+    images: {
         coverSmall: String,
         coverBig: String
     },

@@ -7,9 +7,7 @@ $(function() {
     if(movie){
         url = '/movie/json/'+movie;
     }
-
     $.getJSON(url, function(data) {
-        console.log($.toJSON(data));
         mdata=data;
         render_editor_form(mdata);
         render_event_form(mdata);
@@ -23,11 +21,13 @@ $(function() {
         $('#c_save').on('click',function(event){
             var data = {};
             data['content'] = mdata;
-
+            console.log(data);
+            console.log(data.content);
+            //data = mdata;
             $.ajax({
               type: "POST",
               url: '/movie/add',
-              data: data,
+              data: data, //data,
               success: function (data, textStatus){
                   if(data.success){
                     $('#msg').html('成功保存!');

@@ -21,20 +21,22 @@ router.get('/add', function(req, res){
 
 /* post a add movie */
 router.post('/add', function(req, res){
+    console.log(req.body);
     console.log(req.body.content);
-    var json = req.body.content;
+    //var json = req.body.content;
+    var json = req.body;
+    console.log(json.content);
     if(json._id){
         //update
     }else{
-        //insert
+        Movie.save(json, function(err){
+            if(err){
+                req.flash('error',err);
+            }else{
+                req.flash('success', "Added Success");
+            }
+        });
     }
-    Movie.save(json, function(err){
-        if(err){
-            req.flash('error',err);
-        }else{
-            req.flah('success', "Added Success");
-        }
-    });
 });
 
 /* select a movie */
